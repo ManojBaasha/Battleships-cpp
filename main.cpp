@@ -28,20 +28,40 @@ public:
 
     Board(int row, int col);
     void print_display();
-    void print_solution();//havent done this yet
+    void print_solution();
 };
+
+class Ships{
+
+    public:
+    std::vector<std::pair<char, int>> ships;
+    Ships();
+};
+
+Ships::Ships(){
+    int ship_count;
+    cin >> ship_count;
+    
+    for(int i = 0; i < ship_count; i++){
+        char ship_type;
+        int ship_size;
+        cin >> ship_type >> ship_size;
+        ships.push_back(std::make_pair(ship_type, ship_size));
+    }
+
+}
 
 Game::Game()
 {
-    // TODO: Input file
 
     // inputting row and col
     cin >> row;
     cin >> col;
 
     // creating boards
-    Board board(row, col);
-    board.print_display();
+    Board player1(row, col);
+    Board player2(row, col);
+    
 }
 
 Board::Board(int row, int col)
@@ -71,19 +91,47 @@ Board::Board(int row, int col)
 
 void Board::print_display()
 {
-    //TODO: add numbers to the board while displaying
+    cout << "Display Board" << endl;
+    cout << "  ";
+    for (int i = 0; i < display.size(); ++i)
+    {
+        std::cout << i << ' ';
+    }
+    std::cout << std::endl;
 
     for (int i = 0; i < display.size(); i++)
     {
+        cout << i << ' ';
         for (int j = 0; j < display[i].size(); j++)
         {
-            cout << display[i][j];
+            cout << display[i][j] << " ";
         }
         cout << endl;
     }
 }
 
-int main()
+void Board::print_solution()
 {
-    Game game;
+    cout << "Solution Board" << endl;
+    cout << "  ";
+    for (int i = 0; i < solution.size(); ++i)
+    {
+        std::cout << i << ' ';
+    }
+    std::cout << std::endl;
+
+    for (int i = 0; i < solution.size(); i++)
+    {
+        cout << i << ' ';
+        for (int j = 0; j < solution[i].size(); j++)
+        {
+            cout << solution[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main(int argc, char const *argv[])
+{   //FIXME : add input file
+    Game game();
 }
